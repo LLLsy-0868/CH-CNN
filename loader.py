@@ -85,15 +85,6 @@ def get_train_valid_loader(
         root='./data', train=True,
         download=True, transform=valid_transform,
     )
-    # train_dataset = datasets.CIFAR10(
-    #     root=data_dir, train=True,
-    #     download=True, transform=train_transform,
-    # )
-    #
-    # valid_dataset = datasets.CIFAR10(
-    #     root=data_dir, train=True,
-    #     download=True, transform=valid_transform,
-    # )
 
     num_train = len(train_dataset)
     indices = list(range(num_train))
