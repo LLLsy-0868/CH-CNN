@@ -53,8 +53,6 @@ def get_train_valid_loader(
     normalize = transforms.Normalize(
         mean=[0.5070751592371323, 0.48654887331495095, 0.4409178433670343],
         std = [0.2673342858792401, 0.2564384629170883, 0.27615047132568404]
-        # mean=[0.4914, 0.4822, 0.4465],
-        # std=[0.2023, 0.1994, 0.2010],
     )
 
     # define transforms
@@ -107,17 +105,6 @@ def get_train_valid_loader(
         num_workers=num_workers, pin_memory=pin_memory,
     )
 
-    # visualize some images
-#     if show_sample:
-#         sample_loader = torch.utils.data.DataLoader(
-#             train_dataset, batch_size=9, shuffle=shuffle,
-#             num_workers=num_workers, pin_memory=pin_memory,
-#         )
-#         data_iter = iter(sample_loader)
-#         images, labels = data_iter.next()
-#         X = images.numpy().transpose([0, 2, 3, 1])
-#         plot_images(X, labels)
-#     print(train_loader)
     return (train_loader, valid_loader)
 
 
