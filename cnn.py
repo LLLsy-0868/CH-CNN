@@ -1,26 +1,7 @@
 from __future__ import print_function
-import torch
-from torch.autograd import Variable
 import torch.nn as nn
 import torch.nn.functional as F
 import utils
-# import torch.backends.cudnn as cudnn
-# import torch.optim as optim
-# import data_loader
-# import os
-# from datetime import datetime
-# import multiprocessing
-# # from utils import StatusUpdateTool
-# import random
-# import utils
-# import copy
-# import numpy as np
-#
-# import os
-#
-# # 使用第一张与第三张GPU卡
-#
-# # os.environ["CUDA_VISIBLE_DEVICES"] = "1, 2"
 
 
 class BasicBlock(nn.Module):
@@ -49,7 +30,7 @@ class Basic(nn.Module):
     expansion = 1
     def __init__(self, in_planes, planes, stride=1, num_group=1):
         super(Basic, self).__init__()
-        self.conv1 = nn.Conv2d(in_planes, planes, kernel_size=3, stride=stride, padding=1, bias=False)
+        self.conv1 = nn.Conv2d(in_planes, planes, kernel_size=3, stride=stride, padding=1, bias=False,groups=num_group)
         self.bn1 = nn.BatchNorm2d(planes)
         self.conv2 = nn.Conv2d(planes, planes, kernel_size=3, stride=1, padding=1, bias=False, groups=num_group)
         self.bn2 = nn.BatchNorm2d(planes)
@@ -65,7 +46,7 @@ class Basic(nn.Module):
 class Bottleneck(nn.Module):
 
     expansion = 4
-    def __init__(self, in_planes, planes, stride=1,num_group=1):    #, downsample=None, groups=1, norm_layer=None):
+    def __init__(self, in_planes, planes, stride=1,num_group=1):
         super(Bottleneck, self).__init__()
         width = int(planes/4)
         self.conv1 = nn.Conv2d(in_planes, width, kernel_size=1, stride=1, bias=False,groups=1 if in_planes==3 else num_group)
